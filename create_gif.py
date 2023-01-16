@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 def create_gif(image, filename='color-shifted'):
-    # Create an numpy array from the image, and convert the rgb values to hsv, placing the new image array in a list 
+    # Create an numpy array from the image, and convert the rgb values to hsv, placing the new image array in a list
     image = np.array(image)
     images = [create_hsv_array_from_rgb(image)]
 
