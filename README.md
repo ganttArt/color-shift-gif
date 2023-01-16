@@ -4,7 +4,7 @@ Python script that takes an image and turns it into a color changing GIF.
 
 ## Example
 
-![big sur color shifted](./assets/big_sur.gif)
+![big sur color shifted](./assets/big_sur_sm.gif)
 
 ## Setup
 
