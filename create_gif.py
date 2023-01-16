@@ -22,7 +22,7 @@ def create_gif(image, filename='color-shifted'):
 
     # Create a gif from all the Image objects
     gif = []
-    for image in images:
+    for image in progress_bar(images, prefix='GIF synthesizing:', length=40):
         gif.append(image.convert("P", palette=Image.ADAPTIVE))
     gif[0].save(f'{Path(filename).stem}.gif', save_all=True,
                 optimize=False, append_images=gif[1:], loop=0)
