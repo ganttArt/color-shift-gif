@@ -7,15 +7,15 @@ import colorsys
 # convert all of those to rgb
 # Create video with those in opencv
 
+
 def create_gif(image):
     image = np.array(image)
     images = [create_hsv_array_from_rgb(image)]
 
-    for i in range(1):
+    for i in range(99):
         new_image = create_hue_shifted_array(images[i])
         images.append(new_image)
 
-    # print(images)
 
 def create_hsv_array_from_rgb(image):
     hsv_image = np.zeros((image.shape))
@@ -32,10 +32,17 @@ def create_hsv_array_from_rgb(image):
             hsv_image[row][column] = [h, s, v]
     return hsv_image
 
+
 def create_hue_shifted_array(image):
     shifted = np.zeros((image.shape))
 
-    # Do loop
+    for row in range(image.shape[0]):
+        for column in range(image.shape[1]):
+            [h, s, v] = image[row][column]
+            h += .01
+            if h > 1:
+                h -= 1
+            shifted[row][column] = [h, s, v]
 
     return shifted
 
@@ -45,9 +52,9 @@ def create_hue_shifted_array(image):
 #         for column in range(image.shape[1]):
 #             pixel = shift_pixel_hue(image[row][column])
 #             new_image[row][column] = pixel
-    
-#     return new_image            
-    
+
+#     return new_image
+
 
 # def shift_pixel_hue(pixel):
 #     print('rgb input', pixel)
