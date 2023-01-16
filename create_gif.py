@@ -17,7 +17,7 @@ def create_gif(image):
         new_image = create_hue_shifted_array(images[i])
         images.append(new_image)
     
-    for i in range(100):
+    for i in progress_bar(list(range(100)), prefix='HSV to RGB:', length=40):
         images[i] = create_rgb_array_from_hsv_array(images[i])
 
 
