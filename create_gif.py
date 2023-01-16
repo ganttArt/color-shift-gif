@@ -1,6 +1,7 @@
 import numpy as np
 import colorsys
 from progress_bar import progress_bar
+from PIL import Image
 
 # Order:
 # Convert original image array to hsv
@@ -16,9 +17,10 @@ def create_gif(image):
     for i in progress_bar(list(range(99)), prefix='Shifting hues:', length=40):
         new_image = create_hue_shifted_array(images[i])
         images.append(new_image)
-    
-    for i in progress_bar(list(range(100)), prefix='HSV to RGB:', length=40):
-        images[i] = create_rgb_array_from_hsv_array(images[i])
+
+    for i in progress_bar(list(range(100)), prefix='HSV to Image:', length=40):
+        rgb = create_rgb_array_from_hsv_array(images[i])
+        images[i] = Image.fromarray(rgb.astype(np.uint8))
 
 
 def create_hsv_array_from_rgb(image):
@@ -50,9 +52,10 @@ def create_hue_shifted_array(image):
 
     return shifted
 
+
 def create_rgb_array_from_hsv_array(image):
     rgb_image = np.zeros((image.shape))
-    
+
     for row in range(image.shape[0]):
         for column in range(image.shape[1]):
             pixel = image[row][column]
@@ -63,6 +66,5 @@ def create_rgb_array_from_hsv_array(image):
                 int(g * 255),
                 int(b * 255)
             ]
-    
-    return rgb_image
 
+    return rgb_image
