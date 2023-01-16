@@ -1,6 +1,6 @@
 import numpy as np
 import colorsys
-from progress_bar import progress_bar
+from modules.progress_bar import progress_bar
 from PIL import Image
 from pathlib import Path
 

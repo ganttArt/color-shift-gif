@@ -1,5 +1,5 @@
 from PIL import Image
-from create_gif import create_gif
+from modules.create_gif import create_gif
 
 IMAGE = "test.png"
 
