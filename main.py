@@ -1,4 +1,5 @@
 from PIL import Image
+from create_gif import create_gif
 
 IMAGE = "test.png"
 
@@ -11,7 +12,7 @@ def main():
             print('File type not compatible')
             return
         
-        image.show()
+        create_gif(image)
 
 if __name__ == '__main__':
     main()
