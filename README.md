@@ -19,7 +19,7 @@ pip install -r requirements.txt
 ## Run
 
 - Move image file into project directory
-- Open [main.py](main.py) and change the name of the variable `IMAGE` to match the file name and extension of your image
+- Open [main.py](main.py) and change the variable `IMAGE` string to match the file name and extension of your image
 - On the command line run:
 
     ```bash
