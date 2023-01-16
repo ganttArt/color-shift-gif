@@ -2,25 +2,30 @@ import numpy as np
 import colorsys
 from progress_bar import progress_bar
 from PIL import Image
-
-# Order:
-# Convert original image array to hsv
-# Create a bunch of hsv images, each being hue shifted, use colorsys, .01
-# convert all of those to rgb
-# Create video with those in opencv
+from pathlib import Path
 
 
-def create_gif(image):
+def create_gif(image, filename='color-shifted'):
+    # Create an numpy array from the image, and convert the rgb values to hsv, placing the new image array in a list 
     image = np.array(image)
     images = [create_hsv_array_from_rgb(image)]
 
+    # Create a list of numpy arrays that each have been hue shifted + .01
     for i in progress_bar(list(range(99)), prefix='Shifting hues:', length=40):
         new_image = create_hue_shifted_array(images[i])
         images.append(new_image)
 
+    # Convert all of the hsv numpy arrays into rgb arrays, then into Image objects
     for i in progress_bar(list(range(100)), prefix='HSV to Image:', length=40):
         rgb = create_rgb_array_from_hsv_array(images[i])
         images[i] = Image.fromarray(rgb.astype(np.uint8))
+
+    # Create a gif from all the Image objects
+    gif = []
+    for image in images:
+        gif.append(image.convert("P", palette=Image.ADAPTIVE))
+    gif[0].save(f'{Path(filename).stem}.gif', save_all=True,
+                optimize=False, append_images=gif[1:], loop=0)
 
 
 def create_hsv_array_from_rgb(image):

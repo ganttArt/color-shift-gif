@@ -13,7 +13,7 @@ def main():
             print('File type not compatible')
             return
 
-        create_gif(image)
+        create_gif(image, filename=IMAGE)
 
 
 if __name__ == '__main__':
