@@ -32,3 +32,7 @@ pip install -r requirements.txt
 
 - Control speed of color change
 - Images with transparency maintain transparency
+- Caching for rgb to hsv and back process
+- Setting to not loop the gif
+  - Could incorporate optional command line arguments like `--noloop`
+- start program script
