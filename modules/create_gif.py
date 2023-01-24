@@ -5,7 +5,7 @@ from PIL import Image
 from pathlib import Path
 
 
-def create_gif(image, filename='color-shifted'):
+def create_gif(image, noloop, filename='color-shifted', ):
     # Create an numpy array from the image, and convert the rgb values to hsv, placing the new image array in a list
     image = np.array(image)
     images = [create_hsv_array_from_rgb(image)]
@@ -24,8 +24,12 @@ def create_gif(image, filename='color-shifted'):
     gif = []
     for image in progress_bar(images, prefix='GIF synthesizing:', length=40):
         gif.append(image.convert("P", palette=Image.ADAPTIVE))
-    gif[0].save(f'{Path(filename).stem}.gif', save_all=True,
-                optimize=False, append_images=gif[1:], loop=0)
+    if noloop:
+        gif[0].save(f'{Path(filename).stem}.gif', save_all=True,
+                    optimize=False, append_images=gif[1:])
+    else:
+        gif[0].save(f'{Path(filename).stem}.gif', save_all=True,
+                    optimize=False, append_images=gif[1:], loop=0)
 
 
 def create_hsv_array_from_rgb(image):

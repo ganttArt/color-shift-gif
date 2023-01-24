@@ -14,25 +14,21 @@ cd color-shift-gif
 python3 -m venv venv
 . venv/bin/activate
 pip install -r requirements.txt
+deactivate
 ```
 
 ## Run
 
 - Move image file into project directory
 - Open [main.py](main.py) and change the variable `IMAGE` string to match the file name and extension of your image
-- On the command line run:
-
-    ```bash
-    . venv/bin/activate
-    python main.py
-    deactivate
-    ```
+- Activate virtual environment: `. venv/bin/activate`
+- Run `python main.py`
+  - Optional command line arguments:
+    - `-nl` `--noloop`: Create a GIF that doesn't loop
 
 ## Potential upcoming updates
 
 - Control speed of color change
 - Images with transparency maintain transparency
 - Caching for rgb to hsv and back process
-- Setting to not loop the gif
-  - Could incorporate optional command line arguments like `--noloop`
 - start program script

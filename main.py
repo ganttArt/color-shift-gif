@@ -1,7 +1,16 @@
 from PIL import Image
 from modules.create_gif import create_gif
+import argparse
 
 IMAGE = "test.png"
+
+parser = argparse.ArgumentParser(
+    prog='Color Shift GIF',
+    description='Python script that takes an image and turns it into a color changing GIF',
+)
+parser.add_argument('-nl', '--noloop', action='store_const',
+                    const=True, default=False, help='turn off looping in the GIF')
+args = parser.parse_args()
 
 
 def main():
@@ -13,7 +22,7 @@ def main():
             print('File type not compatible')
             return
 
-        create_gif(image, filename=IMAGE)
+        create_gif(image, noloop=args.noloop, filename=IMAGE)
 
 
 if __name__ == '__main__':
