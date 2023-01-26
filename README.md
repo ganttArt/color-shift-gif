@@ -23,8 +23,12 @@ deactivate
 - Open [main.py](main.py) and change the variable `IMAGE` string to match the file name and extension of your image
 - Activate virtual environment: `. venv/bin/activate`
 - Run `python main.py`
-  - Optional command line arguments:
-    - `-nl` `--noloop`: Create a GIF that doesn't loop
+
+### Optional Command Line Arguments
+
+- `-nl` `--noloop`: Create a GIF that doesn't loop
+- `-p` `--posterize`: Create posterize effect in GIF (experimental effect, works poorly for some images)
+  - ![posterized example](./assets/readme-examples/posterization.png)
 
 ## Potential upcoming updates
 
