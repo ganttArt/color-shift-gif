@@ -27,6 +27,8 @@ deactivate
 ### Optional Command Line Arguments
 
 - `-nl` `--noloop`: Create a GIF that doesn't loop
+- `-t` `--transparent`: Maintain transparency of input image in GIF.
+  - Note: Semi-transparent pixels will convert to fully transparent pixels. GIF image format does not support semi-transparent pixels
 - `-p` `--posterize`: Create posterize effect in GIF (experimental effect, works poorly for some images)
   - ![posterized example](./assets/readme-examples/posterization.png)
 
