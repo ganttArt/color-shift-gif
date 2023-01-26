@@ -1,8 +1,8 @@
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 from modules.create_gif import create_gif
 import argparse
 
-IMAGE = "test.png"
+IMAGE = "assets/test-images/test.png"
 
 parser = argparse.ArgumentParser(
     prog='Color Shift GIF',
@@ -10,19 +10,19 @@ parser = argparse.ArgumentParser(
 )
 parser.add_argument('-nl', '--noloop', action='store_const',
                     const=True, default=False, help='turn off looping in the GIF')
+parser.add_argument('-p', '--posterize', action='store_const',
+                    const=True, default=False, help='posterize setting')
 args = parser.parse_args()
 
 
 def main():
-    with Image.open(IMAGE) as image:
-        try:
-            if image.format != 'JPEG':
+    try:
+        with Image.open(IMAGE) as image:
+            if image.format != 'JPEG' and not args.posterize:
                 image = image.convert('RGB')
-        except Exception:
-            print('File type not compatible')
-            return
-
-        create_gif(image, noloop=args.noloop, filename=IMAGE)
+            create_gif(image, noloop=args.noloop, posterize=args.posterize, filename=IMAGE)
+    except UnidentifiedImageError:
+        print('Error: file type not compatible')
 
 
 if __name__ == '__main__':
