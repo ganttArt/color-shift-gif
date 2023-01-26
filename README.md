@@ -4,7 +4,7 @@ Python script that takes an image and turns it into a color changing GIF.
 
 ## Example
 
-![big sur color shifted](./assets/big_sur_sm.gif)
+![big sur color shifted](./assets/readme-examples/big_sur_sm.gif)
 
 ## Setup
 
@@ -35,6 +35,5 @@ deactivate
 ## Potential upcoming updates
 
 - Control speed of color change
-- Images with transparency maintain transparency
-- Caching for rgb to hsv and back process
-- start program script
+- Caching for rgb to hsv and back to rgb process
+- Command line argument for image file selected
