@@ -37,4 +37,3 @@ python main.py -f <image-filename>
 ## Potential upcoming updates
 
 - Control speed of color change
-- Caching for rgb to hsv and back to rgb process
