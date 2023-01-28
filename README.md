@@ -19,13 +19,15 @@ deactivate
 
 ## Run
 
-- Move image file into project directory
-- Open [main.py](main.py) and change the variable `IMAGE` string to match the file name and extension of your image
-- Activate virtual environment: `. venv/bin/activate`
-- Run `python main.py`
+```bash
+. venv/bin/activate
+python main.py -f <image-filename>
+```
 
 ### Optional Command Line Arguments
 
+- `-f <filename>` `--file <filename>`: File name for image to apply effect to.
+  - Include relative path if file is not in root directory.
 - `-nl` `--noloop`: Create a GIF that doesn't loop
 - `-t` `--transparent`: Maintain transparency of input image in GIF.
   - Note: Semi-transparent pixels will convert to fully transparent pixels. GIF image format does not support semi-transparent pixels
@@ -36,4 +38,3 @@ deactivate
 
 - Control speed of color change
 - Caching for rgb to hsv and back to rgb process
-- Command line argument for image file selected
