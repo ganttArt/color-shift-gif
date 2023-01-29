@@ -26,9 +26,11 @@ python main.py -f <image-filename>
 
 ### Optional Command Line Arguments
 
+- `-h` `--help`: Show info for command line arguments
 - `-f <filename>` `--file <filename>`: File name for image to apply effect to.
   - Include relative path if file is not in root directory.
 - `-d <seconds>` `--duration <seconds>`: Duration of gif in seconds. Default is 10 seconds.
+- `-dm <seconds>` `--delaymotion <seconds>`: Delay motion in the gif by _ seconds (show first frame)
 - `-nl` `--noloop`: Create a GIF that doesn't loop
 - `-t` `--transparent`: Maintain transparency of input image in GIF.
   - Note: Semi-transparent pixels will convert to fully transparent pixels. GIF image format does not support semi-transparent pixels

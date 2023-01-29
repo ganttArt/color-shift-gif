@@ -16,6 +16,8 @@ parser.add_argument(
     '-f', '--file', help='Input image file name. Include relative path if not in root directory')
 parser.add_argument('-d', '--duration', default=10,
                     help='gif duration in seconds')
+parser.add_argument('-dm', '--delaymotion', default=False,
+                    help='delay motion in the gif by _ seconds (show first frame)')
 args = parser.parse_args()
 
 IMAGE = "assets/test-images/test.png"
@@ -29,8 +31,14 @@ def main():
         with Image.open(IMAGE) as image:
             if image.format != 'JPEG' and not args.posterize and not args.transparent:
                 image = image.convert('RGB')
-            create_gif(image, noloop=args.noloop,
-                       posterize=args.posterize, filename=IMAGE, duration=args.duration)
+            create_gif(
+                image,
+                noloop=args.noloop,
+                posterize=args.posterize,
+                filename=IMAGE,
+                duration=args.duration,
+                delay_motion=args.delaymotion
+            )
     except UnidentifiedImageError:
         print('Error: file type not compatible')
 

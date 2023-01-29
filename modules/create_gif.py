@@ -5,13 +5,13 @@ from PIL import Image
 from pathlib import Path
 
 
-def duration_to_milliseconds_per_frame(duration):
-    frames_per_second = 100 / float(duration)  # 100 frames in output gif
+def duration_to_milliseconds_per_frame(duration, frames):
+    frames_per_second = frames / float(duration)
     seconds_per_frame = 1 / frames_per_second * 1000
     return seconds_per_frame
 
 
-def create_gif(image, noloop, posterize, filename, duration):
+def create_gif(image, noloop, posterize, filename, duration, delay_motion):
     # Create an numpy array from the image, and convert the rgb values to hsv, placing the new image array in a list
     image_array = np.array(image)
     hsv_array, transparency_detected = create_hsv_array_from_rgb(image_array)
@@ -39,14 +39,26 @@ def create_gif(image, noloop, posterize, filename, duration):
     if transparency_detected:
         file_settings['transparency'] = 0
 
-    milliseconds_per_frame = duration_to_milliseconds_per_frame(duration)
+    if (delay_motion):
+        duration = float(duration)
+        delay_motion = float(delay_motion)
+        frames = 99
+        if posterize and noloop:
+            frames = 100
+        milliseconds_per_frame = duration_to_milliseconds_per_frame(
+            duration - delay_motion, frames)
+        file_settings['duration'] = [delay_motion * 1000] + \
+            ([milliseconds_per_frame] * frames)
+    else:
+        file_settings['duration'] = duration_to_milliseconds_per_frame(
+            duration, 100)
 
     gif = []
     for image in progress_bar(images, prefix='GIF synthesizing:', length=40):
         gif.append(image.convert("P", palette=Image.ADAPTIVE))
 
     gif[0].save(f'{Path(filename).stem}.gif', save_all=True,
-                optimize=False, append_images=gif[1:], duration=milliseconds_per_frame, **file_settings)
+                optimize=False, append_images=gif[1:], **file_settings)
 
 
 def create_hsv_array_from_rgb(image):
