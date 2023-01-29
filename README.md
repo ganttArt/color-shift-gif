@@ -28,7 +28,7 @@ python main.py -f <image-filename>
 
 - `-f <filename>` `--file <filename>`: File name for image to apply effect to.
   - Include relative path if file is not in root directory.
-- `-d <seconds>` `-d <seconds>`: Duration of gif in seconds. Default is 10 seconds.
+- `-d <seconds>` `--duration <seconds>`: Duration of gif in seconds. Default is 10 seconds.
 - `-nl` `--noloop`: Create a GIF that doesn't loop
 - `-t` `--transparent`: Maintain transparency of input image in GIF.
   - Note: Semi-transparent pixels will convert to fully transparent pixels. GIF image format does not support semi-transparent pixels
