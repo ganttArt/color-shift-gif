@@ -14,7 +14,8 @@ parser.add_argument('-t', '--transparent', action='store_const',
                     const=True, default=False, help='Maintain transparency in image')
 parser.add_argument(
     '-f', '--file', help='Input image file name. Include relative path if not in root directory')
-
+parser.add_argument('-d', '--duration', default=10,
+                    help='gif duration in seconds')
 args = parser.parse_args()
 
 IMAGE = "assets/test-images/test.png"
@@ -29,7 +30,7 @@ def main():
             if image.format != 'JPEG' and not args.posterize and not args.transparent:
                 image = image.convert('RGB')
             create_gif(image, noloop=args.noloop,
-                       posterize=args.posterize, filename=IMAGE)
+                       posterize=args.posterize, filename=IMAGE, duration=args.duration)
     except UnidentifiedImageError:
         print('Error: file type not compatible')
 

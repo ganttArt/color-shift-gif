@@ -5,7 +5,13 @@ from PIL import Image
 from pathlib import Path
 
 
-def create_gif(image, noloop, posterize, filename):
+def duration_to_milliseconds_per_frame(duration):
+    frames_per_second = 100 / float(duration)  # 100 frames in output gif
+    seconds_per_frame = 1 / frames_per_second * 1000
+    return seconds_per_frame
+
+
+def create_gif(image, noloop, posterize, filename, duration):
     # Create an numpy array from the image, and convert the rgb values to hsv, placing the new image array in a list
     image_array = np.array(image)
     hsv_array, transparency_detected = create_hsv_array_from_rgb(image_array)
@@ -33,12 +39,14 @@ def create_gif(image, noloop, posterize, filename):
     if transparency_detected:
         file_settings['transparency'] = 0
 
+    milliseconds_per_frame = duration_to_milliseconds_per_frame(duration)
+
     gif = []
     for image in progress_bar(images, prefix='GIF synthesizing:', length=40):
         gif.append(image.convert("P", palette=Image.ADAPTIVE))
 
     gif[0].save(f'{Path(filename).stem}.gif', save_all=True,
-                optimize=False, append_images=gif[1:], **file_settings)
+                optimize=False, append_images=gif[1:], duration=milliseconds_per_frame, **file_settings)
 
 
 def create_hsv_array_from_rgb(image):
