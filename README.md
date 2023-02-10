@@ -1,5 +1,7 @@
 # Color Shift GIF
 
+![Built with Python 3.11](https://badgen.net/badge/python/3.11)
+
 Python script that takes an image and turns it into a color changing GIF.
 
 ## Example
@@ -16,6 +18,8 @@ python3 -m venv venv
 pip install -r requirements.txt
 deactivate
 ```
+
+`Built with Python 3.11`
 
 ## Run
 
